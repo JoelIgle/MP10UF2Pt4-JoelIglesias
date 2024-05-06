@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="report_sales_personalitzat">
+        <t t-call="web.html_container">
+            <t t-set="company" t-value="docs[0].company_id"/>
+            <div class="header" style="margin-bottom: 20px;">
+                <h2 style="font-size: 24px; color: #333;"><t t-esc="company.name"/></h2>
+                <p style="font-size: 14px; color: #666; margin-bottom: 10px;"><t t-esc="company.street"/><br/>
+                   <t t-esc="company.city"/>, <t t-esc="company.zip"/> <br/>
+                   <t t-esc="company.country_id.name"/><br/>
+                   Telèfon: <t t-esc="company.phone"/><br/>
+                   Email: <t t-esc="company.email"/><br/>
+                   Lloc web: <t t-esc="company.website"/>
+                </p>
+            </div>
+            <t t-foreach="docs" t-as="doc">
+                <div class="page">
+                    <style>
+                        .sales-info {
+                            font-family: Arial, sans-serif;
+                            border-collapse: collapse;
+                            width: 100%;
+                        }
+                        .sales-info td {
+                            border: 1px solid #ccc;
+                            padding: 8px;
+                        }
+                        .sales-info tr:nth-child(even){background-color: #f8f8f8;}
+                        .sales-info tr:hover {background-color: #e0e0e0;}
+                        .sales-info h1 {
+                            padding-top: 12px;
+                            padding-bottom: 12px;
+                            text-align: left;
+                            background-color: #4CAF50;
+                            color: white;
+                            font-size: 20px;
+                            margin-bottom: 20px;
+                            padding-left: 10px;
+                        }
+                        .llistat {
+                            padding-top: 20px;
+                        }
+                        /* Nou estil per mantenir la taula junta */
+                        .page {
+                            page-break-inside: avoid; /* Evitar que la pàgina es trenqui dins d'aquest div */
+                            background-color: #fff;
+                            margin: 20px;
+                            padding: 20px;
+                            border: 1px solid #ddd;
+                            box-shadow: 0 0 5px rgba(0,0,0,0.1);
+                        }
+                        .header {
+                            border-bottom: 1px solid #ddd;
+                            padding-bottom: 20px;
+                        }
+                    </style>
+                    <div class="llistat">
+                        <h1>Informacio de la Venda</h1>
+                        <table class="sales-info">
+                            <tr>
+                                <td><strong>Usuari:</strong></td>
+                                <td><t t-esc="doc.user_id.name"/></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Estat:</strong></td>
+                                <td><t t-esc="doc.state"/></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Nombre d'ordres:</strong></td>
+                                <td><t t-esc="doc.order_count"/></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Quantitat total:</strong></td>
+                                <td><t t-esc="doc.total_amount"/></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </t>
+        </t>
+    </template>
+</odoo>

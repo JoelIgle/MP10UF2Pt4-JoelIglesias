@@ -1,0 +1,90 @@
+<?xml version="1.0"?>
+<odoo>
+    <record id="reclamacio_action" model="ir.actions.act_window">
+        <field name="name">Reclamacio</field>
+        <field name="name">Reclamacions</field>
+        <field name="res_model">reclamacio</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+<!-- Aixó és el que es veu en entrar, la llista de propietats-->
+    <record id="reclamacio_tree" model="ir.ui.view">
+        <field name="name">reclamacio.tree</field>
+        <field name="model">reclamacio</field>
+        <field name="arch" type="xml">
+            <tree string="Propietat Immo">
+                <field name="name"/>
+                <field name="client_id"/>
+                <field name="creator_id" />
+                <field name="sales_order_id" />
+                <field name="closing_date" />
+                <field name="tancament_id"/>
+                <field name="missatges"/>
+                <field name="estat"/>
+            </tree>
+        </field>
+    </record>
+    <record id="motiu_action" model="ir.actions.act_window">
+        <field name="name">Motiu tancament</field>
+        <field name="res_model">tancament</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="missatge_action" model="ir.actions.act_window">
+        <field name="name">Missatges</field>
+        <field name="res_model">missatge</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+   <record id="view_reclamacio_form" model="ir.ui.view">
+        <field name="name">reclamacio.form</field>
+       <field name="model">reclamacio</field>
+       <field name="arch" type="xml">
+           <form string="Reclamacions">
+               <sheet>
+                
+                <group>
+                    
+                    <field name="name"/>
+                    <field name="client_id"/>
+                    <field name="creator_id"/>
+                    <field name="closing_date"/>
+                    <field name="sales_order_id"/>
+                    <field name="tancament_id"/>
+                    <field name="estat"/>
+                    
+                </group>
+                <notebook>
+                    <page string="Descripció inicial">
+                        <group>
+                            <field name="initial_description"/>
+                        </group>
+                    </page>
+                    <page string="Descripció de la resolució final">
+                        <group>
+                            <field name="final_description"/>
+                        </group>
+                    </page>
+                    <page string="Missatges">
+                        <field name="missatges">
+                            <tree>
+                                <field name="name"/>
+                                <field name="creator_id"/>
+                                <field name="reclamacio_id"/>
+                            </tree>
+                            <form string="Missatges">
+                                <group>
+                                    <field name="name"/>
+                                    <field name="creator_id"/>
+                                    <field name="reclamacio_id"/>
+                                </group>
+                            </form>
+                        </field>
+                    </page>
+                </notebook>
+               </sheet>
+            
+           </form>
+       </field>
+    </record>
+</odoo>

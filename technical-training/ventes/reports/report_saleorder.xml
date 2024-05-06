@@ -1,0 +1,25 @@
+<odoo>
+    <data>
+        <template id="report_saleorder_inherit" inherit_id="sale.report_saleorder_document">
+            <xpath expr="//div[@class='page']" position="inside">
+
+                <div class="row mt-12 mb-4" id="informations_inherit">
+
+                    <div t-if="doc.item_count" class="col-auto col-3 mw-100 mb-2">
+                        <strong>Nombre d’articles:</strong>
+                        <p class="m-0" t-field="doc.item_count"/>
+                    </div>
+
+                    <div t-if="doc.preferred_email" class="col-auto col-3 mw-100 mb-2">
+                        <strong>Adreça de correu preferencial:</strong>
+                        <p class="m-0" t-field="doc.preferred_email"/>
+                    </div>
+                </div>
+
+            </xpath>
+        </template>
+    </data>
+</odoo>
+
+
+
